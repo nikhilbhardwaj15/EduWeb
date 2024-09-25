@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node+SQL Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar-nav .nav-link {
+            color: white !important;
+            padding: 10px 20px;
+        }
+        .navbar-nav .nav-link:hover {
+            background-color: #343a40; /* Slightly lighter dark shade for hover */
+            border-radius: 5px;
+        }
+        .navbar-nav .btn {
+            margin-left: 5px;
+        }
+        .dropdown-menu {
+            display: none;
+            background-color: #343a40;
+            padding: 10px;
+            position: absolute;
+            z-index: 1000;
+
+        }
+        .dropdown-menu a {
+            color: white;
+            display: block;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover {
+            background-color: #495057;
+            border-radius: 5px;
+        }
+        .dropdown-btn {
+            cursor: pointer;
+            color: white;
+            background-color: transparent;
+            padding: 10px 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar with Faculty and Student Dropdowns -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_students">View Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin_faculty">View Faculty</a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="/admin_approved_students">Approved Students</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light " href="/admin_logout">Log Out</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="btn btn-outline-light" href="/signup">Sign Up</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- jQuery & Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Toggle Faculty Dropdown on click
+            $('#facultyBtn').click(function(){
+                $('#facultyDropdown').toggle(); // Toggle the dropdown menu
+            });
+
+            // Toggle Student Dropdown on click
+            $('#studentBtn').click(function(){
+                $('#studentDropdown').toggle(); // Toggle the dropdown menu
+            });
+
+            // Hide Faculty Dropdown on mouse leave
+            $('#facultyDropdown').mouseleave(function(){
+                $('#facultyDropdown').hide(); // Hide the dropdown menu
+            });
+
+            // Hide Student Dropdown on mouse leave
+            $('#studentDropdown').mouseleave(function(){
+                $('#studentDropdown').hide(); // Hide the dropdown menu
+            });
+
+            // Optional: Hide dropdowns when clicking outside of them
+            $(document).click(function(event) {
+                if (!$(event.target).closest('#facultyBtn, #facultyDropdown').length) {
+                    $('#facultyDropdown').hide();
+                }
+                if (!$(event.target).closest('#studentBtn, #studentDropdown').length) {
+                    $('#studentDropdown').hide();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

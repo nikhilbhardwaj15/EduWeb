@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <%- include('common/navadmin') %>
+
+    <div class="container">
+        <h2>Welcome, <%= admin.username %></h2>
+        <a href="/admin_students" class="btn btn-info">View Students</a>
+        <a href="/admin_faculty" class="btn btn-info">View Faculty</a>
+        <a href="/admin_logout" class="btn btn-danger">Logout</a>
+    </div>
+</body>
+</html>

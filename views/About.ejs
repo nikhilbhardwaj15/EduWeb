@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Node+SQL Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .about {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        .about .team-member {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .team-member img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid #007bff;
+        }
+        .team-member h4 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #343a40;
+        }
+        .team-member p {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+        .feedback-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .terms {
+            padding: 20px;
+            background-color: #f8f9fa;
+            margin-top: 40px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include('common/nav') %>
+
+    <section class="header">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>Get to know the team behind Node+SQL</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2 class="text-center mb-5">Meet Our Team</h2>
+            <div class="row">
+                <!--  Member 1 -->
+                <div class="col-md-6 team-member">
+                    <img src="/static/images/65856070.jpeg" alt="Team Member 2">
+                    <h4>Pankaj Sharma</h4>
+                    <p>Project Manager</p>
+                    <p>Pankaj manages the project and ensures everything runs smoothly. With a background in software engineering, he ensures the highest quality in every aspect of the project.</p>
+                </div>
+                <!-- Member 2 -->
+                <div class="col-md-6 team-member">
+                    <img src="/static/images/WhatsApp Image 2024-09-16 at 02.06.41_eda8fe69111.jpg" alt="Team Member 3">
+                    <h4>Nikhil Bhardwaj</h4>
+                    <p>Software Developer</p>
+                    <p>Nikhil designs intuitive and user-friendly interfaces and Backend pipelines. His focus is on creating a seamless user experience that aligns with the needs of our users.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Form -->
+    <section class="feedback-form ">
+        <div class="container">
+            <h2>We Value Your Feedback</h2>
+            <form action="/submit-feedback" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+        </div>
+
+        <% if(locals.message)
+    {%>
+        <h3 align="center" style="color: green;"><%=message%></h3>
+
+    <%}%>
+    </section>
+
+    <!-- Terms and Policies -->
+    <section class="terms">
+        <div class="container">
+            <h3>Terms and Policies</h3>
+            <p><strong>Privacy Policy</strong></p>
+            <p>We value your privacy. All personal information collected is used solely for the purpose of providing our services and will not be shared with third parties without your consent.</p>
+            <p><strong>Terms of Service</strong></p>
+            <p>By using our service, you agree to comply with our terms and conditions. We reserve the right to modify these terms at any time. Please review them regularly to stay informed of any changes.</p>
+            <p><strong>Cookie Policy</strong></p>
+            <p>Our website uses cookies to enhance your browsing experience. By continuing to use our site, you agree to our use of cookies. You can change your cookie settings at any time through your browser.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Node+SQL Project. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            display: none;
+            /* Ensure both forms are hidden initially */
+            background-color: rgba(240, 248, 255, 0.8);
+            width: 40%;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .form-container.active {
+            display: block;
+            /* Show only the active form */
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button.active-button {
+            background-color: aliceblue;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .form-group input {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('common/nav') %>
+    <br>
+    <h1 class="text-center">Login</h1>
+    <br>
+
+    <center>
+        <% if (locals.message) { %>
+            <p class="text-danger"><%= message %></p>
+        <% } %>
+        
+        <!-- Toggle Buttons -->
+        <button class="show-student active-button" id="student-btn">Login as Student</button>
+        <button class="show-faculty" id="faculty-btn">Login as Faculty</button>
+
+        <!-- Student Login Form (Default) -->
+        <div id="student-form" class="form-container active">
+            <form action="/login_student" method="post" class="form-group">
+                <div class="mb-3">
+                    <label><b>Email</b></label>
+                    <input type="email" class="form-control" name="email" required placeholder="Enter your E-mail">
+                </div>
+                <div class="mb-3">
+                    <label><b>Password</b></label>
+                    <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-success">Login as Student</button>
+            </form>
+        </div>
+
+        <!-- Faculty Login Form -->
+        <div id="faculty-form" class="form-container">
+            <form action="/login_faculty" method="post" class="form-group">
+                <div class="mb-3">
+                    <label><b>Email</b></label>
+                    <input type="email" class="form-control" name="email" required placeholder="Enter your E-mail">
+                </div>
+                <div class="mb-3">
+                    <label><b>Password</b></label>
+                    <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-success">Login as Faculty</button>
+            </form>
+        </div>
+
+        <br>
+        <a href="/signup">Don't have an account? Sign up here</a><br><br>
+    </center>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initially show the student form
+            $('#student-form').addClass('active');
+            $('#faculty-form').removeClass('active');
+            $('#student-btn').addClass('active-button'); // Highlight student button
+
+            // Toggle forms on button click
+            $('#student-btn').click(function () {
+                $('#student-form').addClass('active');  // Show student form
+                $('#faculty-form').removeClass('active');  // Hide faculty form
+                $(this).addClass('active-button');  // Highlight student button
+                $('#faculty-btn').removeClass('active-button');  // Un-highlight faculty button
+            });
+
+            $('#faculty-btn').click(function () {
+                $('#student-form').removeClass('active');  // Hide student form
+                $('#faculty-form').addClass('active');  // Show faculty form
+                $(this).addClass('active-button');  // Highlight faculty button
+                $('#student-btn').removeClass('active-button');  // Un-highlight student button
+            });
+        });
+    </script>
+</body>
+
+</html>

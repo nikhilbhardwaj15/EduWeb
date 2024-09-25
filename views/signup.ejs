@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            display: none;
+            /* Ensure both forms are hidden initially */
+            background-color: rgba(240, 248, 255, 0.626);
+            width: 40%;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .form-container.active {
+            display: block;
+            /* Show only the active form */
+        }
+
+        button.active-button {
+            background-color: aliceblue;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .radio-group label {
+            margin-right: 10px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button.active-button {
+            background-color: aliceblue;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('common/nav') %>
+    <br>
+    <h1 class="text-center">Sign Up</h1>
+    <br>
+
+    <center>
+        <% if (locals.message) { %>
+            <p class="text-success"><%= message %></p>
+        <% } %>
+        <button class="show-student active-button" id="student-btn">Sign Up as Student</button>
+        <button class="show-faculty" id="faculty-btn">Sign Up as Faculty</button>
+
+        <!-- Student Sign-Up Form (Default) -->
+        <div id="student-form" class="form-container active">
+            <form action="/signup_student" method="post" class="form-group">
+                <div class="mb-3">
+                    <label><b>Name</b></label>
+                    <input type="text" class="form-control" name="name" required placeholder="Enter your Name">
+                </div>
+                <div class="mb-3">
+                    <label><b>Email</b></label>
+                    <input type="email" class="form-control" name="email" required placeholder="Enter your E-mail">
+                </div>
+                <div class="mb-3">
+                    <label><b>Password</b></label>
+                    <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+                <div class="mb-3">
+                    <label><b>Gender</b></label><br>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="Male" required> Male</label>
+                        <label><input type="radio" name="gender" value="Female" required> Female</label>
+                        <label><input type="radio" name="gender" value="Other" required> Other</label>
+                    </div><br>
+                </div>
+                <div class="mb-3">
+                    <label><b>Contact No.</b></label>
+                    <input type="number" class="form-control" name="mobile" required>
+                </div>
+                <div class="mb-3">
+                    <label><b>City</b></label>
+                    <select name="city" class="form-control" required>
+                        <option value="" disabled selected>Select your city</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Mohali">Mohali</option>
+                        <option value="Panchkula">Panchkula</option>
+                        <option value="New Chandigarh">New Chandigarh</option>
+                        <option value="Kharar">Kharar</option>
+                        <option value="Zirakpur">Zirakpur</option>
+                        <option value="Derabassi">Derabassi</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label><b>Class</b></label>
+                    <input type="number" class="form-control" name="class" required placeholder="Enter your Class" min="5" max="12">
+                </div>
+                <button type="submit" class="btn btn-success">Sign Up as Student</button>
+            </form>
+        </div>
+
+        <!-- Faculty Sign-Up Form -->
+        <div id="faculty-form" class="form-container">
+            <form action="/signup_faculty" method="post" class="form-group">
+                <div class="mb-3">
+                    <label><b>Name</b></label>
+                    <input type="text" class="form-control" name="name" required placeholder="Enter your Name">
+                </div>
+                <div class="mb-3">
+                    <label><b>Email</b></label>
+                    <input type="email" class="form-control" name="email" required placeholder="Enter your E-mail">
+                </div>
+                <div class="mb-3">
+                    <label><b>Password</b></label>
+                    <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+                <div class="mb-3">
+                    <label><b>Gender</b></label><br>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="Male" required> Male</label>
+                        <label><input type="radio" name="gender" value="Female" required> Female</label>
+                        <label><input type="radio" name="gender" value="Other" required> Other</label>
+                    </div><br>
+                </div>
+                <div class="mb-3">
+                    <label><b>Contact No.</b></label>
+                    <input type="number" class="form-control" name="mobile" required>
+                </div>
+                <div class="mb-3">
+                    <label><b>City</b></label>
+                    <select name="city" class="form-control" required>
+                        <option value="" disabled selected>Select your city</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Mohali">Mohali</option>
+                        <option value="Panchkula">Panchkula</option>
+                        <option value="New Chandigarh">New Chandigarh</option>
+                        <option value="Kharar">Kharar</option>
+                        <option value="Zirakpur">Zirakpur</option>
+                        <option value="Derabassi">Derabassi</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label><b>Department</b></label>
+                    <select name="department" class="form-control" required>
+                        <option value="" disabled selected>Select your department</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="English">English</option>
+                        <option value="Computers">Computers</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Sign Up as Faculty</button>
+            </form>
+        </div>
+
+        <br>
+        <a href="/login">Already have an account?</a><br><br>
+    </center>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initially show the student form
+            $('#student-form').addClass('active');
+            $('#faculty-form').removeClass('active');
+            $('#student-btn').addClass('active-button'); // Highlight student button
+
+            // Toggle forms on button click
+            $('#student-btn').click(function () {
+                $('#student-form').addClass('active');  // Show student form
+                $('#faculty-form').removeClass('active');  // Hide faculty form
+                $(this).addClass('active-button');  // Highlight student button
+                $('#faculty-btn').removeClass('active-button');  // Un-highlight faculty button
+            });
+
+            $('#faculty-btn').click(function () {
+                $('#student-form').removeClass('active');  // Hide student form
+                $('#faculty-form').addClass('active');  // Show faculty form
+                $(this).addClass('active-button');  // Highlight faculty button
+                $('#student-btn').removeClass('active-button');  // Un-highlight student button
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node+SQL Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .features {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        .feature {
+            margin: 40px 0;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+        .feature-icon {
+            font-size: 50px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            font-size: 1.75rem;
+            margin-bottom: 15px;
+        }
+        .feature p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include('common/nav') %>
+
+    <section class="header">
+        <div class="container">
+            <h1>Welcome to Node+SQL</h1>
+            <p>Efficient Record Management Powered by Node.js and SQL Databases</p>
+            <a href="/signup" class="btn btn-primary btn-lg mt-3">Get Started</a>
+        </div>
+    </section>
+
+    
+    <section class="features">
+        <div class="container">
+            <div class="row">
+                <!-- Feature 1 -->
+                <div class="col-md-4 feature text-center">
+                    <div class="feature-icon">
+                        <i class="bi bi-speedometer"></i>
+                    </div>
+                    <h3>Fast and Reliable</h3>
+                    <p>Built with Node.js and SQL, our platform offers blazing fast performance, ensuring you can manage large datasets with minimal lag.</p>
+                    <p>From loading times to data queries, speed is our priority, providing you the tools to handle records seamlessly.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="col-md-4 feature text-center">
+                    <div class="feature-icon">
+                        <i class="bi bi-lock"></i>
+                    </div>
+                    <h3>Secure User Authentication</h3>
+                    <p>Security is at the heart of Node+SQL. With our robust login and signup features, your sensitive data is fully encrypted and protected from unauthorized access.</p>
+                    <p>Advanced security protocols such as OAuth and JWT ensure your records are always safe.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="col-md-4 feature text-center">
+                    <div class="feature-icon">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+                    <h3>Intuitive User Interface</h3>
+                    <p>Our clean and user-friendly interface makes managing records easier than ever. Navigate through the application without any hassle, whether you're a beginner or an advanced user.</p>
+                    <p>Streamlined design focuses on user experience, allowing you to focus on what matters—your data.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Feature 4 -->
+                <div class="col-md-4 feature text-center">
+                    <div class="feature-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+                    <h3>Comprehensive Analytics</h3>
+                    <p>Get insights into your data with detailed analytics. Our system offers easy-to-read graphs and charts that provide real-time statistics for better decision-making.</p>
+                    <p>Identify trends and performance metrics quickly to optimize your workflow.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="col-md-4 feature text-center">
+                    <div class="feature-icon">
+                        <i class="bi bi-database"></i>
+                    </div>
+                    <h3>Scalable Data Management</h3>
+                    <p>Node+SQL grows with your needs. Whether you're dealing with a handful of records or scaling up to millions, our system adapts to ensure smooth and efficient performance.</p>
+                    <p>Never worry about outgrowing your database capacity.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="col-md-4 feature text-center">
+                    <div class="feature-icon">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <h3>Global Access</h3>
+                    <p>Access your records from anywhere in the world, on any device. Node+SQL is fully responsive and works seamlessly across all platforms, providing flexibility and freedom to manage data on the go.</p>
+                    <p>All you need is an internet connection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="text-center bg-light py-5">
+        <div class="container">
+            <h2>Start Managing Your Records Now!</h2>
+            <p>Whether you are a student, professional, or business, Node+SQL helps you keep track of your records in an efficient and secure way.</p>
+            <a href="/signup" class="btn btn-success btn-lg">Sign Up !</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Node+SQL Project. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

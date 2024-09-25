@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approved Students</title>
+    <link rel="stylesheet" href="/path/to/your/css/styles.css"> <!-- Add your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button {
+            background-color: #007bff; /* Blue color */
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .block-button {
+            background-color: #dc3545; /* Red color for block */
+        }
+        .block-button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <%- include('common/navadmin') %>
+
+    <div class="container">
+        <h1>Approved Students</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Additional Info</th>
+                    <th>Actions</th> <!-- New column for actions -->
+                </tr>
+            </thead>
+            <tbody>
+                <% if (students.length > 0) { %>
+                    <% students.forEach(student => { %>
+                        <tr>
+                            <td><%= student.name %></td>
+                            <td><%= student.email %></td>
+                            <td><%= student.additionalInfo || 'N/A' %></td> <!-- Replace with actual field -->
+                            <td>
+                                <!-- Add a form for blocking the student -->
+                                <form action="/block_student/<%= student.id %>" method="POST">
+                                    <button class="button block-button" type="submit">Block</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="4">No approved students found.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
