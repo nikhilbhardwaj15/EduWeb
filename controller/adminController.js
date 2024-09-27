@@ -46,6 +46,7 @@ class AdminPanel {
 
 
     View_Students(req, res) {
+        if (req.session.admin) {
         connect_obj.getConnection((err, myconnection) => {
             if (err) {
                 res.send(err);
@@ -65,10 +66,15 @@ class AdminPanel {
             }
         })
     }
+    else 
+    {
+        res.redirect('admin_login'); // Redirect if not logged in
+    }
+}
 
 
     View_Faculty(req, res) {
-        if (req.method === 'GET') {
+        if (req.session.admin) {
             
             connect_obj.getConnection((err, myconnection) => {
                 if (err) {
@@ -87,13 +93,17 @@ class AdminPanel {
                 }
             });
         }
+        else 
+    {
+        res.redirect('admin_login'); // Redirect if not logged in
+    }
     }
 
 
     Approve_Student(req, res) {
         const studentId = req.params.id;
         const q = `UPDATE student SET approved = 1 WHERE id = ${studentId}`;  // Approving student
-    
+        
         connect_obj.getConnection((err, myconnection) => {
             if (!err) {
                 myconnection.query(q, (err) => {
@@ -113,12 +123,14 @@ class AdminPanel {
             }
         });
     }
+
     
 
     Approve_Faculty(req, res) {
         const facultyId = req.params.id;
         const q = `UPDATE faculty SET approved = 1 WHERE id = ${facultyId}`;  // Approving faculty
 
+        
         connect_obj.getConnection((err, myconnection) => {
             if (!err) {
                 myconnection.query(q, (err) => {
@@ -137,7 +149,9 @@ class AdminPanel {
     }
 
 
+
     View_Approved_Students(req, res) {
+        if (req.session.admin) {
         connect_obj.getConnection((err, myconnection) => {
             if (err) 
                 {
@@ -158,6 +172,41 @@ class AdminPanel {
                 });
             }
         });
+    }    
+    else 
+    {
+        res.redirect('admin_login'); // Redirect if not logged in
+    }
+    }
+
+
+    View_Approved_Faculty(req, res) {
+        if (req.session.admin) {
+        connect_obj.getConnection((err, myconnection) => {
+            if (err) 
+                {
+                res.send(err);
+                }
+                else 
+                {
+                const q = `SELECT * FROM faculty WHERE approved = 1`; // Change to 1 for approved faculty
+                myconnection.query(q, (err, results) => {
+                    if (err) 
+                        {
+                        res.send(err);
+                    } 
+                    else 
+                    {
+                        res.render('admin_approved_faculty', { faculty: results });
+                    }
+                });
+            }
+        });
+    }
+    else 
+    {
+        res.redirect('admin_login'); // Redirect if not logged in
+    }
     }
 
 
@@ -177,6 +226,28 @@ class AdminPanel {
                 else
                 {
                 return res.redirect('/admin_approved_students')     // Redirect back to the approved students list
+                }
+            })}
+        });
+    }
+
+
+    BlockFaculty(req, res) {
+        const facultyId = req.params.id; // Get student ID from the request parameters
+    
+        connect_obj.getConnection((err, myconnection) => {
+            if (err) {
+                res.send(err);
+            }
+            else{
+            const query = `UPDATE faculty SET approved = 0 WHERE id = ?`; // Update the approved status
+            myconnection.query(query, [facultyId], (err, results) => {
+                if (err) {
+                    res.send(err);
+                }
+                else
+                {
+                return res.redirect('/admin_approved_faculty')     // Redirect back to the approved students list
                 }
             })}
         });
@@ -206,15 +277,37 @@ class AdminPanel {
         });
     }
 
+
+    Delete_faculty(req, res) {
+        const facultyId = req.params.id; // Get student ID from the request parameters
+    
+        connect_obj.getConnection((err, myconnection) => {
+            if (err) {
+                // Handle error
+                return res.redirect('/error_page'); // Redirect to an error page if needed
+            }
+    
+            const query = `DELETE FROM faculty WHERE id = ?`; // Update the approved status
+            myconnection.query(query, [facultyId], (err, results) => {
+                if (err) {
+                    return res.redirect('/error_page'); // Redirect to an error page if needed
+                }
+                else{
+    
+                // Successfully deleted, now redirect back to the approved students page
+                return res.redirect('/admin_approved_faculty');
+                } // Redirect back to the approved students list
+            });
+        });
+    }
+
 }
 const obj = new AdminPanel();
 module.exports = obj;
 
 // add more records to the student and faculty database.(done)
-// make adminController in your method, tweak the logics. (done)
 // seperate the general student and faculty functions of the project in the other controller. (done)
 // either redirect or print a message after signing up , in faculty/student. (done)
-// login issue , only this message block working: 'User does not exist or is not approved' even if correct.
-// make the same logics, ejs and routes for faculty in admin 
+// login issue , only this message block working: 'User does not exist or is not approved' even if correct. (done)
+// make the same logics, ejs and routes for faculty in admin (done)
 // add note aside the sign up form: instructions
-// make view approved faculty files

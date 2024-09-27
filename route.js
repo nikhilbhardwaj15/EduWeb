@@ -125,13 +125,26 @@ router.get('/admin_approved_students',(req,res)=>
     {
         admin_obj.View_Approved_Students(req,res)
     });
+
+router.get('/admin_approved_faculty',(req,res)=>
+    {
+        admin_obj.View_Approved_Faculty(req,res)
+    });
     
 router.post('/block_student/:id', (req, res) => {
     admin_obj.BlockStudent(req, res);
 });
 
+router.post('/block_faculty/:id', (req, res) => {
+    admin_obj.BlockFaculty(req, res);
+});
+
 router.post('/admin_delete_student/:id', (req, res) => {
     admin_obj.Delete_student(req, res);
+});
+
+router.post('/admin_delete_faculty/:id', (req, res) => {
+    admin_obj.Delete_faculty(req, res);
 });
 
 

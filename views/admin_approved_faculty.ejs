@@ -75,20 +75,20 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Class</th>
+                    <th>Department</th>
                     <th>Actions</th> <!-- New column for actions -->
                 </tr>
             </thead>
             <tbody>
-                <% if (students.length > 0) { %>
-                    <% students.forEach(student => { %>
+                <% if (faculty.length > 0) { %>
+                    <% faculty.forEach(faculty => { %>
                         <tr>
-                            <td><%= student.name %></td>
-                            <td><%= student.email %></td>
-                            <td><%= student.class %></td>
+                            <td><%= faculty.name %></td>
+                            <td><%= faculty.email %></td>
+                            <td><%= faculty.department %></td> 
                             <td>
                                 <!-- Add a form for blocking the student -->
-                                <form action="/block_student/<%= student.id %>" method="POST">
+                                <form action="/block_faculty/<%= faculty.id %>" method="POST">
                                     <button class="button block-button" type="submit">Block</button>
                                 </form>
                             </td>
@@ -96,7 +96,7 @@
                     <% }); %>
                 <% } else { %>
                     <tr>
-                        <td colspan="4">No approved students found.</td>
+                        <td colspan="4">No approved faculty found.</td>
                     </tr>
                 <% } %>
             </tbody>
