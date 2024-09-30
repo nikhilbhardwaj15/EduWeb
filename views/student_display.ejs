@@ -1,9 +1,11 @@
+<!-- this will be displayed in the faculty dashboard in readonly mode -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Approval</title>
+    <title>Students in Database</title>
 
     <!-- Bootstrap CSS for Pagination and Table -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -11,10 +13,11 @@
 </head>
 <body>
 
-    <%- include('common/navadmin') %>
+    <!-- Faculty navigation bar, now `user` is defined -->
+    <%- include('common/navfaculty') %>
 
     <div class="container mt-4">
-        <h1>Pending Student Approvals</h1>
+        <h1>Student Data</h1>
         <table id="student-table" class="table table-bordered">
             <thead>
                 <tr>
@@ -22,8 +25,6 @@
                     <th>Email</th>
                     <th>Class</th>
                     <th>City</th>
-                    <th>Approve</th>
-                    <th>Delete</th> 
                 </tr>
             </thead>
             <tbody>
@@ -32,17 +33,7 @@
                     <td><%= student.name %></td>
                     <td><%= student.email %></td>
                     <td><%= student.class %></td>
-                    <td><%= student.city %></td>
-                    <td>
-                        <form method="POST" action="/admin_approve_student/<%= student.id %>">
-                            <button type="submit" class="btn btn-success">Approve</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="POST" action="/admin_delete_student/<%= student.id %>" onsubmit="return confirm('Are you sure you want to delete this approval request?');">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td> 
+                    <td><%= student.city %></td> 
                 </tr>
                 <% }); %>
             </tbody>

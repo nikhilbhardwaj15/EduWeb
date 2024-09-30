@@ -149,7 +149,7 @@ router.post('/admin_delete_faculty/:id', (req, res) => {
 
 
 router.get('/login', (req, res) => {
-    res.render('login'); // Render the login page
+    res.render('login'); 
 });
 
 
@@ -178,11 +178,16 @@ router.get('/student_dashboard', (req, res) => {
 // Faculty dashboard route
 router.get('/faculty_dashboard', (req, res) => {
     if (req.session.user) {
-        stu_obj.Faculty_dashboard(req, res);
+        res.render('faculty_dashboard', { user: req.session.user }); // Render the dashboard with user data
+        res.end()
     } else {
         res.redirect('/login'); // Redirect to login if not authenticated
     }
 });
 
+
+router.get('/student_display', (req, res) => {
+    faculty_obj.Display_Student(req, res);
+});
 
 module.exports=router

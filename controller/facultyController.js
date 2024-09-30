@@ -76,7 +76,8 @@ class Faculty
                     if (user.approved === 1) {
                         console.log("User approved. Redirecting to dashboard...");
                         req.session.user = user; // Store user in session
-                        res.redirect('/student_dashboard'); // Redirect to dashboard
+                        console.log('faculty Dashboard about to open')
+                        res.redirect('/faculty_dashboard'); // Redirect to dashboard
                     } else {
                         console.log("User not approved.");
                         res.render('login', { message: 'Your account is not approved yet' });
@@ -97,6 +98,43 @@ class Faculty
             res.redirect('/login');
         }
     }
+
+
+    Display_Student(req, res) {
+        if (req.session.user) { // Assuming `req.session.faculty` holds user data
+
+            
+            connect_obj.getConnection((err, myconnection) => {
+                if (err) {
+                    console.log('Database connection error:', err); // Log the error
+                    res.send(err);
+                    res.end();
+                } else {
+                    const q = `SELECT * FROM student WHERE approved = 1`;
+                    myconnection.query(q, (err, results) => {
+                        if (err) {
+                            console.log('Query error:', err); // Log the query error
+                            res.send(err);
+                            res.end();
+                        } else {
+                            // Render the view with students data and user data
+                            console.log('Rendering students:', results); // Log the results
+                            res.render('student_display', { 
+                                students: results});
+                            res.end();
+                        }
+                    });
+                }
+            });
+        } else {
+            console.log('No session found, redirecting to login'); // If session not found
+            res.redirect('/login'); // Redirect to login if session is missing
+        }
+    }
+    
+    
 }
+
+
 const obj= new Faculty()
 module.exports=obj

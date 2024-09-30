@@ -36,34 +36,7 @@ class School
         }
     
 
-        // Display_Student(req,res)
-        // {
-        //   connect_obj.getConnection((err,myconnection)=>
-        //   {
-        //         if(err)
-        //         {
-        //           res.send(err)
-        //           res.end()
-        //         }
-        //         else 
-        //         {
-        //            const q="select * from student"
-        //            myconnection.query(q,(err,data)=>
-        //           {
-        //                 if(err)
-        //                 {
-        //                    res.send()
-        //                    res.end()
-        //                 }
-        //                 else 
-        //                 {
-        //                     res.render('displaystu',{record:data})
-        //                     res.end()
-        //                 }
-        //           })
-        //         }
-        //   })
-        // }
+
 
 
     // Method for student dashboard
@@ -128,8 +101,6 @@ Loginstu(req, res) {
         });
     });
 }    
-
-
 
 }
 const obj= new School()

@@ -21,7 +21,7 @@ class AdminPanel {
                             res.end();
                         } else {
                             req.session.admin = results[0]; // Set session for logged-in admin
-                            res.redirect('admin_dashboard'); // Redirect to admin dashboard
+                            res.redirect('/admin_dashboard'); // Redirect to admin dashboard
                         }
                     });
                 }
