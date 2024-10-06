@@ -118,7 +118,7 @@ class Faculty
                             res.end();
                         } else {
                             // Render the view with students data and user data
-                            console.log('Rendering students:', results); // Log the results
+                            console.log('Rendering students:', results) // Log the results
                             res.render('student_display', { 
                                 students: results});
                             res.end();
@@ -127,13 +127,47 @@ class Faculty
                 }
             });
         } else {
-            console.log('No session found, redirecting to login'); // If session not found
-            res.redirect('/login'); // Redirect to login if session is missing
+            console.log('No session found, redirecting to login') // If session not found
+            res.redirect('/login')     // Redirect to login if session is missing
         }
     }
     
     
+    makeAnnouncement(req, res) {
+
+        if (req.session.user) {
+
+        const query = `INSERT INTO announcements (date, subject, announcement) VALUES ('${req.body.date}','${req.body.subject}','${req.body.announcement}')`;
+        
+        connect_obj.getConnection((err, myconnection) => {
+            if (err) {
+                console.log("Database connection error:", err);
+                res.render('faculty_dashboard', { message: 'Database connection error', faculty: req.session.user });
+                return;
+            }
+
+            myconnection.query(query, (err, results) => {
+                if (err) {
+                    console.log("Query error:", err);
+                    res.render('faculty_announcement', { message: 'Error adding announcement', faculty: req.session.user });
+                    return;
+                }
+
+               else{
+                console.log("Announcement added successfully")  // Success: Redirect back to the faculty dashboard
+                res.redirect('/announcement')
+        }});
+        });
+    }
+     else {
+        console.log('No session found, redirecting to login') // If session not found
+        res.redirect('/login')     // Redirect to login if session is missing
+    }
 }
+
+}
+
+
 
 
 const obj= new Faculty()

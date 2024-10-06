@@ -190,4 +190,17 @@ router.get('/student_display', (req, res) => {
     faculty_obj.Display_Student(req, res);
 });
 
+router.get('/announcement', (req, res) => {
+    res.render('faculty_announcement')
+    res.end()
+})
+
+router.post('/faculty_announcement', (req, res) => {
+    faculty_obj.makeAnnouncement(req, res);
+});
+
+// router.get('/faculty_announcement', (req, res) => {
+//     stu_obj.Display_announcements(req, res);
+// });
+
 module.exports=router

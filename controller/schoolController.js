@@ -100,8 +100,40 @@ Loginstu(req, res) {
             }
         });
     });
-}    
+}  
+
+// Display_announcements(req,res){
+
+// if (req.session.user) {
+
+
+//         connect_obj.getConnection((err, myconnection) => {
+//             if (err) {
+//                 res.send(err);
+//                 res.end();
+//             } else {
+//                 const q = `SELECT * FROM announcements`;
+//                 myconnection.query(q, (err, results) => {
+//                     if (err) {
+//                         res.send(err);
+//                         res.end();
+//                     } else {
+//                         console.log('Rendering announcements:', results)
+//                         res.render('faculty_announcements', { announcements : results });
+//                         res.end();
+//                     }
+//                 });
+//             }
+//         })
+//     }
+//     else 
+//     {
+//         res.redirect('admin_login'); // Redirect if not logged in
+//     }
+// }
 
 }
+
+
 const obj= new School()
 module.exports=obj
